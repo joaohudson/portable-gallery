@@ -5,7 +5,8 @@ app.on('ready', () => {
     const window = new BrowserWindow({
         width: 700,
         height: 450,
-        autoHideMenuBar: true
+        autoHideMenuBar: true,
+        center: true
     })
 
     window.loadFile(path.join(__dirname, 'client', 'index.html'))
