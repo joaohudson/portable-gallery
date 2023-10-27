@@ -12,13 +12,14 @@ body {
 button {
     user-select: none;
     border: none;
-    background-color: black;
+    background-color: transparent;
     color: white;
     border-radius: 50%;
 }
 
 .floatButton {
     position: fixed;
+    background-color: black;
     z-index: 1;
     right: 15px;
     bottom: 15px;
