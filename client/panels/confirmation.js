@@ -1,6 +1,6 @@
 const rootPanel = document.getElementById('rootPanel')
 
-export async function showConfirmationMessage(message, onConfirm, onCancel) {
+export function showConfirmationMessage(message, onConfirm, onCancel) {
 
     const label = document.createElement('label')
     label.innerText = message
