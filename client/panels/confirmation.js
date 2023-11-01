@@ -20,13 +20,14 @@ export async function showConfirmationMessage(message, onConfirm, onCancel) {
     }
     cancelButton.innerText = 'X'
     const buttonDiv = document.createElement('div')
+    buttonDiv.classList.add('horizontalButtonGroup')
     buttonDiv.appendChild(okButton)
     buttonDiv.appendChild(cancelButton)
 
     const contentPanel = document.createElement('div')
+    contentPanel.classList.add('modalContent')
     contentPanel.appendChild(textDiv)
     contentPanel.appendChild(buttonDiv)
-    contentPanel.classList.add('modalContent')
     
     const confirmationPanel = document.createElement('div')
     confirmationPanel.classList.add('modal')

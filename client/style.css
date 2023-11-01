@@ -58,3 +58,15 @@ button {
     width: 90%;
     height: auto;
 }
+.horizontalButtonGroup {
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+.horizontalButtonGroup button {
+    margin-left: auto;
+    margin-right: 20px;
+}
+.horizontalButtonGroup button:last-child{
+    margin-right: 0px;
+}
