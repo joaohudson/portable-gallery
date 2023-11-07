@@ -1,12 +1,9 @@
 import { buildImageDiv } from "./components/image.js"
 import { showConfirmationMessage } from "./panels/confirmation.js"
+import { showAddLinkPanel } from "./panels/add-link.js"
 
 const addButton = document.getElementById('addButton')
-const addLinkDialog = document.getElementById('addLinkDialog')
-const addLinkField = document.getElementById('addLinkField')
-const addLinkButton = document.getElementById('addLinkButton')
 const imagesDiv = document.getElementById('images')
-const cancelLinkButton = document.getElementById('cancelLinkButton')
 
 const data = loadData()
 
@@ -16,29 +13,20 @@ function addLink(link) {
    update()
 }
 
-function showLinkDialog(show) {
-    if(show) {
-        addButton.hidden = true
-        addLinkDialog.hidden = false
-        addLinkDialog.value = ''
-    } else {
+function showLinkDialog() {
+    addButton.hidden = true
+    showAddLinkPanel(
+        (url) => {
+        addLink(url)
         addButton.hidden = false
-        addLinkDialog.hidden = true
-    }
+    },
+        () => {
+            addButton.hidden = false
+        }
+    )
 }
 
-addLinkButton.onclick = () => {
-    addLink(addLinkField.value)
-    showLinkDialog(false)
-}
-
-cancelLinkButton.onclick = () => {
-    showLinkDialog(false)
-}
-
-addButton.onclick = () => {
-    showLinkDialog(true)
-}
+addButton.onclick = () => showLinkDialog()
 
 async function deleteImage(event, image) {
     if(event.detail == 2) {
