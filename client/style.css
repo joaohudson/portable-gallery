@@ -17,6 +17,10 @@ button {
     border-radius: 50%;
 }
 
+button:hover {
+    cursor: pointer;
+}
+
 .floatButton {
     position: fixed;
     background-color: black;

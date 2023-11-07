@@ -3,7 +3,7 @@ const rootPanel = document.getElementById('rootPanel')
 export function showAddLinkPanel(onAdd, onCancel) {
 
     const confirmButton = document.createElement('button')
-        confirmButton.innerText = '>'
+        confirmButton.innerText = '>>'
     const linkInput = document.createElement('input')
         linkInput.classList.add('textInput')
         linkInput.type = 'text'
