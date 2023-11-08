@@ -18,9 +18,9 @@ function showLinkDialog() {
     addButton.hidden = true
     showAddLinkPanel(
         (url) => {
-        addLink(url)
-        addButton.hidden = false
-    },
+            addLink(url)
+            addButton.hidden = false
+        },
         () => {
             addButton.hidden = false
         }
