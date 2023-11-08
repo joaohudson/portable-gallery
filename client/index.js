@@ -1,6 +1,7 @@
 import { buildImageDiv } from "./components/image.js"
 import { showConfirmationMessage } from "./panels/confirmation.js"
 import { showAddLinkPanel } from "./panels/add-link.js"
+import { showOptions } from "./panels/options.js"
 
 const addButton = document.getElementById('addButton')
 const imagesDiv = document.getElementById('images')
@@ -28,20 +29,24 @@ function showLinkDialog() {
 
 addButton.onclick = () => showLinkDialog()
 
-async function deleteImage(event, image) {
-    if(event.detail == 2) {
-        showConfirmationMessage('Tem certeza que deseja deletar esta imagem?', () => {
-            data.images = data.images.filter(img => img != image)
-            update()
-            save()
-        })
-    }
+async function deleteImage(image) {
+    showConfirmationMessage('Tem certeza que deseja deletar esta imagem?', () => {
+        data.images = data.images.filter(img => img != image)
+        update()
+        save()
+    })
 }
 
 function update() {
     imagesDiv.innerText = ''
     data.images.forEach(image => {
-        imagesDiv.appendChild(buildImageDiv(image, (e) => deleteImage(e, image)))
+        imagesDiv.appendChild(buildImageDiv(image, (_) => {
+            showOptions(['Apagar', 'Cancelar'], (option) => {
+                if(option == 'Apagar') {
+                    deleteImage(image)
+                }
+            })
+        }))
     })
 }
 
