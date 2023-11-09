@@ -5,7 +5,6 @@ app.on('ready', () => {
     const window = new BrowserWindow({
         width: 700,
         height: 450,
-        autoHideMenuBar: true,
         center: true
     })
 

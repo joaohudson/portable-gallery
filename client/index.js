@@ -4,7 +4,9 @@ import { showAddLinkPanel } from "./panels/add-link.js"
 import { showOptions } from "./panels/options.js"
 
 const addButton = document.getElementById('addButton')
+const floatButtonDiv = document.getElementById('floatButtonDiv')
 const imagesDiv = document.getElementById('images')
+const exportButton = document.getElementById('exportButton')
 
 const data = loadData()
 
@@ -15,19 +17,21 @@ function addLink(link) {
 }
 
 function showLinkDialog() {
-    addButton.hidden = true
+    floatButtonDiv.style.display = 'none'
     showAddLinkPanel(
         (url) => {
             addLink(url)
-            addButton.hidden = false
+            floatButtonDiv.style.display = null
         },
         () => {
-            addButton.hidden = false
+            floatButtonDiv.style.display = null
         }
     )
 }
 
 addButton.onclick = () => showLinkDialog()
+
+exportButton.onclick = () => exportData()
 
 async function deleteImage(image) {
     showConfirmationMessage('Tem certeza que deseja deletar esta imagem?', () => {
@@ -48,6 +52,18 @@ function update() {
             })
         }))
     })
+}
+
+function exportData() {
+    const downloadName = 'gallery-' + Date.now() + '.json'
+    const jsonData = JSON.stringify(data)
+    const blob = new Blob([jsonData], {type: 'application/json'})
+    const blobUrl = URL.createObjectURL(blob)
+    const a = document.createElement('a')
+    a.href = blobUrl
+    a.download = downloadName
+    a.click()
+    setTimeout(() => URL.revokeObjectURL(blobUrl), 2000)
 }
 
 function save() {
