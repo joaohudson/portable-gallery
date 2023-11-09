@@ -14,7 +14,6 @@ button {
     border: none;
     background-color: transparent;
     color: white;
-    border-radius: 50%;
 }
 
 button:hover {
@@ -22,12 +21,13 @@ button:hover {
 }
 
 .floatButton {
+	border-radius: 50%;
     position: fixed;
     background-color: black;
     z-index: 1;
-    right: 15px;
-    bottom: 25px;
-    scale: 1.5;
+    right: 20px;
+    bottom: 30px;
+    scale: 2;
 }
 
 .textInput {
