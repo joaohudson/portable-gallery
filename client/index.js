@@ -7,12 +7,14 @@ const addButton = document.getElementById('addButton')
 const floatButtonDiv = document.getElementById('floatButtonDiv')
 const imagesDiv = document.getElementById('images')
 const exportButton = document.getElementById('exportButton')
+const importButton = document.getElementById('importButton')
 
-const data = loadData()
+let data = {
+    images: []
+}
 
 function addLink(link) {
    data.images.push(link)
-   save()
    update()
 }
 
@@ -33,11 +35,12 @@ addButton.onclick = () => showLinkDialog()
 
 exportButton.onclick = () => exportData()
 
+importButton.onclick = () => load()
+
 async function deleteImage(image) {
     showConfirmationMessage('Tem certeza que deseja deletar esta imagem?', () => {
         data.images = data.images.filter(img => img != image)
         update()
-        save()
     })
 }
 
@@ -66,18 +69,24 @@ function exportData() {
     setTimeout(() => URL.revokeObjectURL(blobUrl), 2000)
 }
 
-function save() {
-    localStorage.setItem('data', JSON.stringify(data))
-}
-
-function loadData() {
-    if(localStorage.getItem('data') != null) {
-        const dataJson = localStorage.getItem('data')
-        return JSON.parse(dataJson)
+async function load() {
+    const fileInput = document.createElement('input')
+    fileInput.type = 'file'
+    fileInput.onchange = async () => {
+        if(!fileInput.files.length){
+            return
+        }
+        const file = fileInput.files[0]
+        const jsonData = await file.text()
+        try {
+            data = JSON.parse(jsonData)
+            update()
+        } catch(e) {
+            alert('Invalid file!')
+            console.log(e)
+        }
     }
-    else {
-        return {images: []}
-    }
+    fileInput.click()
 }
 
 update()
