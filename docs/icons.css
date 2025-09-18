@@ -1,19 +1,19 @@
 .icon-download {
-    background: url('/resource/download-icon.svg');
+    background: url('./resource/download-icon.svg');
     background-size: 50%;  
     background-repeat: no-repeat;
     background-position: center;
 }
 
 .icon-upload {
-    background: url('/resource/upload-icon.svg');
+    background: url('./resource/upload-icon.svg');
     background-size: 50%;  
     background-repeat: no-repeat;
     background-position: center;
 }
 
 .icon-plus {
-    background: url('/resource/plus-icon.svg');
+    background: url('./resource/plus-icon.svg');
     background-size: 50%;  
     background-repeat: no-repeat;
     background-position: center;
